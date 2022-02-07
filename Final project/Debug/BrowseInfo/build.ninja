@@ -1,0 +1,51 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$in+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\XclFileGenerator.exe" $flags
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe $flags
+  depfile = $out.dep
+  description = IAR_NEW_TOOL+++INDEXER+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\SourceIndexer.exe" $flags
+
+rule MAKEBROWSE
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\makeBrowseData.exe" $flags
+
+rule PDBLINK
+  command = C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\common\bin\PbdLink.exe" $flags
+
+
+
+#Build steps
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.xcl : COMPILER_XCL 
+  xclcommand = -source_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\main.c" -xcl_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.xcl" -macro_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.tmp" -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\main.c" -D ewarm -D PART_TM4C123GH6PM -D TARGET_IS_TM4C123_RB1 -o "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\Obj\\" --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Normal.h" -I C$:\ti\TivaWare_C_Series-2.2.0.295\ -On --predef_macros "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.tmp"
+  rspfile_name = E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.xcl.rsp
+
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.xcl : COMPILER_XCL 
+  xclcommand = -source_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\startup_ewarm.c" -xcl_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.xcl" -macro_file "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.tmp" -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\bin\iccarm.exe"
+  flags = "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\startup_ewarm.c" -D ewarm -D PART_TM4C123GH6PM -D TARGET_IS_TM4C123_RB1 -o "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\Obj\\" --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M4 -e --fpu=VFPv4_sp --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.0\arm\inc\c\DLib_Config_Normal.h" -I C$:\ti\TivaWare_C_Series-2.2.0.295\ -On --predef_macros "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.tmp"
+  rspfile_name = E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.xcl.rsp
+
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.pbi : INDEXER E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.xcl |  $
+E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\main.c
+  flags = "-out=E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.pbi" -f "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.xcl"
+
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.pbi : INDEXER E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.xcl |  $
+E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\startup_ewarm.c
+  flags = "-out=E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.pbi" -f "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.xcl"
+
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbw : MAKEBROWSE E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbd
+  flags = "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbd" -output "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbw"
+
+build E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbd : PDBLINK E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.pbi |  $
+E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.pbi
+  flags = -M "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\Project.pbd" "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\main.pbi" "E$:\College\4-$ Senior$ 1\Semester$ 1\CSE211$ -$ Introduction$ to$ Embedded$ Systems\Project\Final$ project\Debug\BrowseInfo\startup_ewarm.pbi"
+
